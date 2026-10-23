@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Foto Digital · San Pío 2026</title>
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- FONDO DECORATIVO -->
+    <div class="stars"></div>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="layout">
+
+        <!-- =====================================
+             SECCIÓN IZQUIERDA: PERSONALIZACIÓN
+             ===================================== -->
+        <section class="editor">
+
+            <p class="eyebrow">
+                FERIA DE CIENCIAS 2026 · INSTITUTO SAN PÍO DE PIETRELCINA
+            </p>
+
+            <h1>
+                CREÁ TU
+                <span>FOTO DIGITAL</span>
+            </h1>
+
+            <p class="lead">
+                Sacate una foto y llevate tu credencial
+                de recuerdo de la feria.
+            </p>
+
+            <!-- PANEL DE PERSONALIZACIÓN -->
+            <div class="panel">
+
+                <!-- NOMBRE -->
+                <label for="alias">
+                    Tu nombre o apodo
+                </label>
+
+                <input
+                    type="text"
+                    id="alias"
+                    maxlength="30"
+                    placeholder="Escribí tu nombre o apodo"
+                >
+
+                <!-- PROFESIÓN O GRUPO -->
+                <label for="role">
+                    Profesión, curso o grupo
+                </label>
+
+                <input
+                    type="text"
+                    id="role"
+                    maxlength="50"
+                    placeholder="Ej.: Docente, 2.º año, Familia Pérez…"
+                >
+
+                <!-- ELEGIR FOTOGRAFÍA -->
+                <div class="section-title">
+                    ELEGÍ TU FOTO
+                </div>
+
+                <div class="actions camera-actions">
+
+                    <!-- SACAR FOTO -->
+                    <button
+                        id="startCamera"
+                        class="primary"
+                        type="button"
+                    >
+                        📷 Sacar foto
+                    </button>
+
+                    <!-- SUBIR FOTO -->
+                    <label
+                        class="upload-btn secondary"
+                        for="upload"
+                    >
+                        ↑ Subir foto
+                    </label>
+
+                    <input
+                        type="file"
+                        id="upload"
+                        accept="image/*"
+                        hidden
+                    >
+
+                </div>
+
+                <p class="note">
+                    Podés repetir la foto.
+                    No se envía ni guarda en servidores.
+                </p>
+
+                <!-- SELECCIÓN DE TEMAS -->
+                <div class="section-title">
+                    PERSONALIZÁ TU CREDENCIAL
+                </div>
+
+                <label>
+                    Elegí el tema de tu credencial
+                </label>
+
+                <!-- Los temas se generan desde script.js -->
+                <div
+                    id="palette"
+                    class="palette"
+                ></div>
+
+                <!-- REINICIAR -->
+                <div class="actions">
+
+                    <button
+                        id="reset"
+                        class="secondary"
+                        type="button"
+                    >
+                        ↺ Nueva credencial
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- MENSAJES DEL SISTEMA -->
+            <p
+                class="note"
+                id="status"
+                role="status"
+            >
+                Elegí tu nombre y tomá una foto para comenzar.
+            </p>
+
+        </section>
+
+
+        <!-- =====================================
+             SECCIÓN DERECHA: CREDENCIAL
+             ===================================== -->
+        <section class="preview">
+
+            <!-- TARJETA -->
+            <div class="card" id="card">
+
+                <!-- ENCABEZADO -->
+                <div class="card-top">
+
+                    <div>
+
+                        <span class="micro">
+                            INSTITUTO DE EDUCACIÓN SUPERIOR
+                            SAN PÍO DE PIETRELCINA
+                        </span>
+
+                        <strong>
+                            FERIA DE CIENCIAS 2026
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <!-- FOTOGRAFÍA -->
+                <div class="avatar-area photo-area">
+
+                    <div class="orb"></div>
+
+                    <img
+                        id="avatar"
+                        alt="Tu fotografía en la credencial"
+                    >
+
+                    <span
+                        class="avatar-loading"
+                        id="loading"
+                    >
+                        TU FOTO VA AQUÍ
+                    </span>
+
+                </div>
+
+                <!-- DATOS PERSONALES -->
+                <div class="card-body">
+
+                    <h2 id="displayAlias">
+                        TU NOMBRE
+                    </h2>
+
+                    <p id="displayRole">
+                        TU PROFESIÓN O GRUPO
+                    </p>
+
+                    <!-- PIE DE LA CREDENCIAL -->
+                    <div class="card-footer">
+
+                        <div class="badge-icon">
+                            ✦
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                ¡YO PARTICIPÉ EN LA
+                                FERIA DE CIENCIAS 2026!
+                            </strong>
+
+                            <strong class="career-name">
+                                TECNICATURA SUPERIOR EN
+                                DESARROLLO DE SOFTWARE
+                            </strong>
+
+                            <small class="career-motto">
+                                LO QUE IMAGINÁS,
+                                PODÉS PROGRAMARLO.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- LÍNEA DECORATIVA INFERIOR -->
+                <div class="card-edge"></div>
+
+            </div>
+
+
+            <!-- =====================================
+                 DESCARGAR CREDENCIAL
+                 ===================================== -->
+            <div class="export">
+
+                <button
+                    id="download"
+                    class="primary"
+                    type="button"
+                >
+                    ⬇ Descargar credencial PNG
+                </button>
+
+            </div>
+
+
+            <!-- =====================================
+                 CÓDIGO QR
+                 ===================================== -->
+            <div
+                id="qrPanel"
+                class="qr-panel"
+            >
+
+                <h3>
+                    📱 ¡Creá tu tarjeta desde el celular!
+                </h3>
+
+                <p>
+                    Escaneá este QR, sacate una foto
+                    o subila desde tu galería y
+                    descargá tu recuerdo.
+                </p>
+
+                <!-- IMAGEN DEL QR -->
+                <img
+                    id="qr"
+                    alt="Código QR para abrir Foto Digital"
+                    hidden
+                >
+
+                <!-- MENSAJE DEL QR -->
+                <p
+                    id="qrHelp"
+                    class="note"
+                >
+                    Al publicar el sitio en GitHub Pages,
+                    el QR aparecerá automáticamente.
+                </p>
+
+                <!-- COPIAR ENLACE -->
+                <button
+                    id="copy"
+                    class="secondary"
+                    type="button"
+                    hidden
+                >
+                    Copiar enlace
+                </button>
+
+            </div>
+
+            <!-- ACLARACIÓN DE PRIVACIDAD -->
+            <p class="attribution">
+                Foto procesada localmente en tu navegador
+                · Feria de Ciencias 2026
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================
+         VENTANA EMERGENTE DE LA CÁMARA
+         ===================================== -->
+    <div
+        id="cameraModal"
+        class="camera-modal"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-label="Sacar una foto"
+    >
+
+        <div class="camera-dialog">
+
+            <!-- ENCABEZADO DE LA CÁMARA -->
+            <div class="camera-dialog-head">
+
+                <strong>
+                    📷 Sacate una foto
+                </strong>
+
+                <button
+                    id="closeCamera"
+                    type="button"
+                    class="secondary"
+                >
+                    ✕ Cerrar
+                </button>
+
+            </div>
+
+            <!-- VISTA DE LA CÁMARA -->
+            <div class="camera-stage">
+
+                <video
+                    id="camera"
+                    autoplay
+                    muted
+                    playsinline
+                ></video>
+
+                <!-- CUENTA REGRESIVA -->
+                <div
+                    id="countdown"
+                    class="countdown"
+                    hidden
+                ></div>
+
+            </div>
+
+            <p class="note">
+                Ubicate frente a la cámara
+                y tocá Capturar foto.
+            </p>
+
+            <!-- CAPTURAR FOTO -->
+            <button
+                id="capture"
+                type="button"
+                class="primary"
+                disabled
+            >
+                ● Capturar foto
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         JAVASCRIPT
+         IMPORTANTE: CARGAR AL FINAL
+         ===================================== -->
+    <script src="script.js"></script>
+
+</body>
+</html>
